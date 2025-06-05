@@ -11,10 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeLink = document.getElementById("theme-css");
 
   let currentTheme = "montainha";
-  setActiveAvatar();
-
   let historico = [];
   let firstResponseReceived = false;
+
+  setActiveAvatar();
+
+  // Exibir mensagem de boas-vindas apenas uma vez por sessão
+  if (!sessionStorage.getItem("welcomeShown")) {
+    const textoBoasVindas =
+      "Olá! Sou seu assistente especializado em Direito do Consumidor. Fui criado para tirar suas dúvidas *apenas* sobre este tema, com base na legislação brasileira.\n\n" +
+      "Você pode interagir comigo de duas formas:\n\n" +
+      "* **Modo Montainha (IA Geral):** Pergunte o que quiser sobre Direito do Consumidor, e usarei a inteligência da OpenAI para te ajudar.\n" +
+      "* **Modo Otavianinho (Informações Locais):** Faça perguntas específicas, e buscarei as respostas em nossos documentos e materiais locais, como leis e súmulas.";
+    addMessage("bot", textoBoasVindas);
+    sessionStorage.setItem("welcomeShown", "true");
+  }
 
   avatarMontainha.addEventListener("click", () => {
     if (currentTheme !== "montainha") {
@@ -139,34 +150,4 @@ document.addEventListener("DOMContentLoaded", () => {
       sendBtn.click();
     }
   });
-
-  /*
-  const checkConnectionBtn = document.getElementById("check-connection-btn");
-  const statusMessage = document.getElementById("status-message");
-
-  checkConnectionBtn.addEventListener("click", async () => {
-    statusMessage.textContent = "Verificando...";
-    try {
-      const response = await fetch(BACKEND_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pergunta: "teste de conexão" }),
-      });
-
-      if (response.ok) {
-        statusMessage.textContent = "✅ Conexão com o servidor estabelecida.";
-        statusMessage.style.color = "green";
-      } else {
-        statusMessage.textContent = "❌ Erro na resposta do servidor.";
-        statusMessage.style.color = "red";
-      }
-    } catch (error) {
-      statusMessage.textContent = "❌ Erro ao conectar com o servidor.";
-      statusMessage.style.color = "red";
-      console.error("Erro de conexão:", error);
-    }
-  });
-  */
 });

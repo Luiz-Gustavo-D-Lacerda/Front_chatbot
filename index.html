@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chatbot Jurídico</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link id="theme-css" rel="stylesheet" href="css/styles-montainha.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link id="theme-css" rel="stylesheet" href="css/styles-montainha.css" />
 </head>
 <body>
 
-  <!--
-  <div class="connection-wrapper">
-    <button id="check-connection-btn">Verificar Conexão</button>
-    <span id="status-message"></span>
-  </div>
-  -->
-
-  <!-- CHAT PRINCIPAL -->
+  <!-- CONTAINER PRINCIPAL DO CHAT -->
   <div class="chat-container">
     <div class="chat-header">
       <h2>Direito do Consumidor</h2>
@@ -32,22 +25,23 @@
       <button id="send-btn">Enviar</button>
     </div>
 
-    <!-- Container de sugestões (dinâmico) -->
+    <!-- SUGESTÕES DE PERGUNTAS (geradas dinamicamente) -->
     <div class="suggestions"></div>
   </div>
 
-<!-- Avatar da direita - Montainha -->
-<div class="avatar-container">
-  <div class="avatar-name">Montainha</div>
-  <img src="imagens/MiniMontanha.png" alt="Avatar Funko do estudante de Direito" class="funko-avatar">
-</div>
+  <!-- AVATAR DIREITO - MONTAINHA -->
+  <div class="avatar-container" tabindex="0">
+    <div class="avatar-name">Montainha</div>
+    <img src="imagens/MiniMontanha.png" alt="Avatar Funko do estudante de Direito" class="funko-avatar" />
+  </div>
 
-<!-- Avatar da esquerda - Otavianinho -->
-<div class="avatar-container-left">
-  <div class="avatar-name-left">Otavianinho</div>
-  <img src="imagens/Otavianinho2.png" alt="Avatar Funko Otavianinho" class="funko-avatar-left">
-</div>
+  <!-- AVATAR ESQUERDO - OTAVIANINHO -->
+  <div class="avatar-container-left" tabindex="0">
+    <div class="avatar-name-left">Otavianinho</div>
+    <img src="imagens/Otavianinho2.png" alt="Avatar Funko Otavianinho" class="funko-avatar-left" />
+  </div>
 
+  <!-- SCRIPT PRINCIPAL -->
   <script src="js/script.js"></script>
 </body>
 </html>
