@@ -18,15 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let historico = [];
     let firstResponseReceived = false;
 
+    // Mensagens de apresentação de cada avatar
+   const montainhaWelcomeMessage = "Olá! Eu sou Montainha, seu assistente virtual em Direito do Consumidor. Minha função é fornecer **orientações claras e abrangentes**, buscando informações em uma **vasta base de conhecimento externa**. Estou à disposição para suas perguntas gerais sobre o tema.";
+    const otavianinhoWelcomeMessage = "Prezado(a) usuário(a), sou Otavianinho, o especialista em Direito do Consumidor. Minha expertise reside em fornecer **informações pontuais e fundamentadas**, consultando nossa **base de dados interna**, que inclui a legislação brasileira, súmulas e normativas de bancos locais. Para dúvidas que exigem precisão legal e detalhes específicos, pode contar comigo.";
+
+
     setActiveTheme(); // Chama para definir o tema inicial e avatares
 
-    // Mensagem fixa de boas-vindas
-    const textoBoasVindas =
-        "Olá! Sou seu assistente especializado em Direito do Consumidor. Fui criado para tirar suas dúvidas *apenas* sobre este tema, com base na legislação brasileira.\n\n" +
-        "Você pode interagir comigo de duas formas:\n\n" +
-        "* **Modo Montainha (IA Geral):** Pergunte o que quiser sobre Direito do Consumidor, e usarei a inteligência da OpenAI para te ajudar.\n" +
-        "* **Modo Otavianinho (Informações Locais):** Faça perguntas específicas, e buscarei as respostas em nossos documentos e materiais locais, como leis e súmulas.";
-    addMessage("bot", textoBoasVindas);
+    // Removida a mensagem de boas-vindas fixa aqui. Ela será adicionada dinamicamente.
+
 
     // Listeners para os avatares grandes (para telas maiores)
     avatarMontainha.addEventListener("click", () => {
@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
             currentTheme = "montainha";
             themeLink.href = "css/styles-montainha.css";
             BACKEND_URL = "https://chatbot-consumidor-api.azurewebsites.net/perguntar-openai";
+            historico = []; // Limpa o histórico ao trocar de modo
+            chatHistory.innerHTML = ''; // Limpa as mensagens anteriores
+            addMessage("bot", montainhaWelcomeMessage); // Adiciona a mensagem do Montainha
             setActiveTheme();
         }
     });
@@ -43,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
             currentTheme = "otavianinho";
             themeLink.href = "css/styles-otavianinho.css";
             BACKEND_URL = "https://chatbot-consumidor-api.azurewebsites.net/perguntar-pdf";
+            historico = []; // Limpa o histórico ao trocar de modo
+            chatHistory.innerHTML = ''; // Limpa as mensagens anteriores
+            addMessage("bot", otavianinhoWelcomeMessage); // Adiciona a mensagem do Otavianinho
             setActiveTheme();
         }
     });
@@ -53,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
             currentTheme = "montainha";
             themeLink.href = "css/styles-montainha.css";
             BACKEND_URL = "https://chatbot-consumidor-api.azurewebsites.net/perguntar-openai";
+            historico = []; // Limpa o histórico ao trocar de modo
+            chatHistory.innerHTML = ''; // Limpa as mensagens anteriores
+            addMessage("bot", montainhaWelcomeMessage); // Adiciona a mensagem do Montainha
             setActiveTheme();
         }
     });
@@ -62,6 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
             currentTheme = "otavianinho";
             themeLink.href = "css/styles-otavianinho.css";
             BACKEND_URL = "https://chatbot-consumidor-api.azurewebsites.net/perguntar-pdf";
+            historico = []; // Limpa o histórico ao trocar de modo
+            chatHistory.innerHTML = ''; // Limpa as mensagens anteriores
+            addMessage("bot", otavianinhoWelcomeMessage); // Adiciona a mensagem do Otavianinho
             setActiveTheme();
         }
     });
@@ -86,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Função que adiciona as mensagens ao chat
     function addMessage(role, text, source = null) {
         const messageWrapper = document.createElement("div");
         messageWrapper.classList.add(role);
@@ -100,7 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const messageDiv = document.createElement("div");
         messageDiv.classList.add("message");
-        messageDiv.textContent = text;
+        // Usar innerHTML para interpretar a formatação Markdown (negrito)
+        messageDiv.innerHTML = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+
 
         messageWrapper.appendChild(messageDiv);
         chatHistory.appendChild(messageWrapper);
@@ -182,6 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Funções executadas na inicialização para definir a mensagem de boas-vindas inicial
+    // Se o tema inicial for Montainha, mostra a mensagem do Montainha
+    if (currentTheme === "montainha") {
+        addMessage("bot", montainhaWelcomeMessage);
+    } else { // Se o tema inicial for Otavianinho (caso você mude o padrão no futuro)
+        addMessage("bot", otavianinhoWelcomeMessage);
+    }
     /*
     // Código de verificação de conexão (descomente se quiser usar)
     const checkConnectionBtn = document.getElementById("check-connection-btn");
