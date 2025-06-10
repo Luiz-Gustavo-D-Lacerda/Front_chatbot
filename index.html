@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chatbot Jurídico</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-  <link id="theme-css" rel="stylesheet" href="css/styles-montainha.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Chatbot Jurídico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link id="theme-css" rel="stylesheet" href="css/styles-montainha.css" />
 </head>
 <body>
 
-  <!-- CONTAINER PRINCIPAL DO CHAT -->
-  <div class="chat-container">
-    <div class="chat-header">
-      <h2>Direito do Consumidor</h2>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="header-avatars">
+                <div class="avatar-header-montainha avatar-header-item" tabindex="0">
+                    <img src="imagens/MiniMontanha.png" alt="Avatar Funko do estudante de Direito" class="funko-avatar-header" />
+                </div>
+                <div class="avatar-header-otavianinho avatar-header-item" tabindex="0">
+                    <img src="imagens/Otavianinho2.png" alt="Avatar Funko Otavianinho" class="funko-avatar-header" />
+                </div>
+            </div>
+            <h2>Direito do Consumidor</h2>
+        </div>
+
+        <div class="chat-box">
+            <div id="chat-history" class="chat-history"></div>
+            <div id="typing" class="typing" style="display: none;">Digitando...</div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Digite sua pergunta..." />
+            <button id="send-btn">Enviar</button>
+        </div>
+
+        <div class="suggestions"></div>
     </div>
 
-    <div class="chat-box">
-      <div id="chat-history" class="chat-history"></div>
-      <div id="typing" class="typing" style="display: none;">Digitando...</div>
+    <div class="avatar-container" tabindex="0">
+        <div class="avatar-name">Montainha</div>
+        <img src="imagens/MiniMontanha.png" alt="Avatar Funko do estudante de Direito" class="funko-avatar" />
     </div>
 
-    <div class="input-area">
-      <input type="text" id="user-input" placeholder="Digite sua pergunta..." />
-      <button id="send-btn">Enviar</button>
+    <div class="avatar-container-left" tabindex="0">
+        <div class="avatar-name-left">Otavianinho</div>
+        <img src="imagens/Otavianinho2.png" alt="Avatar Funko Otavianinho" class="funko-avatar-left" />
     </div>
 
-    <!-- SUGESTÕES DE PERGUNTAS (geradas dinamicamente) -->
-    <div class="suggestions"></div>
-  </div>
-
-  <!-- AVATAR DIREITO - MONTAINHA -->
-  <div class="avatar-container" tabindex="0">
-    <div class="avatar-name">Montainha</div>
-    <img src="imagens/MiniMontanha.png" alt="Avatar Funko do estudante de Direito" class="funko-avatar" />
-  </div>
-
-  <!-- AVATAR ESQUERDO - OTAVIANINHO -->
-  <div class="avatar-container-left" tabindex="0">
-    <div class="avatar-name-left">Otavianinho</div>
-    <img src="imagens/Otavianinho2.png" alt="Avatar Funko Otavianinho" class="funko-avatar-left" />
-  </div>
-
-  <!-- SCRIPT PRINCIPAL -->
-  <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

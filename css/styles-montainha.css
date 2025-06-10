@@ -31,13 +31,22 @@ body {
   flex-direction: column;
 }
 
-/* Cabeçalho Do Chat - Tema Montainha */
+/* Cabeçalho Do Chat - Tema Montainha (ATUALIZADO) */
 .chat-header {
   background-color: #2e3a59;
   color: #fff;
-  padding: 20px;
+  padding: 15px 20px; /* Ajuste o padding */
   text-align: center;
   font-weight: 500;
+  display: flex; /* Para organizar o título e os avatares */
+  align-items: center; /* Alinha verticalmente */
+  justify-content: space-between; /* Espaço entre avatares/título */
+}
+
+.chat-header h2 {
+    flex-grow: 1; /* Permite que o título ocupe o espaço restante */
+    text-align: center; /* Centraliza o título */
+    margin: 0; /* Remove margem padrão do h2 */
 }
 
 /* Caixa De Conversa - Tema Montainha */
@@ -73,6 +82,8 @@ body {
 .bot {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start; /* Adicionado para alinhar ícone/texto */
+  gap: 4px; /* Adicionado espaço entre ícone e mensagem */
 }
 
 .bot .message {
@@ -242,24 +253,6 @@ body {
   font-weight: 500;
 }
 
-/* Responsividade para telas pequenas */
-@media (max-width: 480px) {
-  .suggestions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .suggestion-btn {
-    width: 100%;
-    text-align: center;
-  }
-
-  .chat-container {
-    max-width: 95%;
-    margin: 0 10px;
-  }
-}
-
 /* Avatares - Tema Montainha */
 .avatar-container {
   position: fixed;
@@ -343,13 +336,6 @@ body {
   position: relative;
 }
 
-@media (max-width: 480px) { /* 615px */
-  .avatar-container,
-  .avatar-container-left {
-    display: none;
-  }
-}
-
 .source-icon {
   font-size: 1.2em;
   margin-right: 8px;
@@ -357,8 +343,83 @@ body {
   display: inline-block;
   padding: 8px 4px 0 0;
 }
-.bot {
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
+
+
+/* --- NOVOS ESTILOS PARA AVATARES NO CABEÇALHO --- */
+
+/* Contêiner dos avatares no cabeçalho (OCULTO POR PADRÃO) */
+.header-avatars {
+    display: none; /* Oculto por padrão, visível apenas em mobile */
+    align-items: center;
+    gap: 10px; /* Espaço entre os avatares */
+}
+
+.avatar-header-item {
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    padding: 2px; /* Pequeno padding para o contorno de ativo */
+    border-radius: 50%; /* Para o contorno arredondado */
+}
+
+.funko-avatar-header {
+    width: 40px; /* Tamanho reduzido para o cabeçalho */
+    height: auto;
+    display: block;
+    border-radius: 50%; /* Deixa a imagem redonda */
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo sutil */
+}
+
+/* Estilos específicos para o estado ativo e hover dos avatares do cabeçalho (Montainha) */
+.avatar-header-montainha.active {
+    filter: drop-shadow(0 0 5px rgba(74, 84, 226, 0.8));
+    border: 2px solid #4a54e2; /* Adiciona uma borda para destaque */
+}
+.avatar-header-montainha:hover {
+    transform: scale(1.1);
+}
+.avatar-header-otavianinho.active { /* Para garantir que o outro não tenha filtro/borda */
+    filter: none;
+    border: none;
+}
+
+
+/* --- RESPONSIVIDADE (ATUALIZADA) --- */
+
+@media (min-width: 618px) { /* Avatares grandes visíveis apenas acima de 480px */
+    .avatar-container,
+    .avatar-container-left {
+        display: block; /* Garante que os avatares grandes apareçam */
+    }
+    .header-avatars {
+        display: none; /* Oculta avatares do cabeçalho em telas maiores */
+    }
+}
+
+@media (max-width: 617px) { /* Em telas de até 480px */
+    .chat-container {
+        max-width: 95%;
+        margin: 0 10px;
+    }
+
+    .suggestions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .suggestion-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .avatar-container,
+    .avatar-container-left {
+        display: none; /* Oculta os avatares grandes */
+    }
+    .header-avatars {
+        display: flex; /* Mostra os avatares no cabeçalho */
+        order: -1; /* Coloca os avatares à esquerda do título */
+    }
+    .chat-header h2 {
+        font-size: 1.1em; /* Ajuste o tamanho do título para caber melhor */
+    }
 }
